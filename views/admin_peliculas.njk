@@ -1,0 +1,28 @@
+{% extends "admin_base.njk" %}
+
+{% block titulo %}Películas{% endblock %}
+
+{% block contenido %}
+   <h1>Listado de Películas</h1>
+   <div>
+      {% for pelicula in peliculas %}
+         {% if loop.index % 2 == 0 %}
+            <li class="par">
+         {% else %}
+            <li class="impar">
+         {% endif %}
+            {{ pelicula.titulo }}
+            <a class="btn btn-success" href="/pelicula/{{pelicula.id}}">Ver ficha</a>
+            <a class="btn btn-success" href="/admin/peliculas/editar/{{pelicula.id}}">Editar</a>
+            <form action="/admin/peliculas/{{ pelicula.id }}" method="post">
+               <input type="hidden" name="_method" value="delete" />
+               <button type="submit" class="btn btn-danger">
+                  Borrar
+               </button>
+            </form>
+            </li>
+         {% else %}
+         <li>No hay películas que mostrar.</li> 
+      {% endfor %}
+   </div>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% extends "admin_base.njk" %}
+
+{% block titulo %}Películas | Nueva{% endblock %}
+
+{% block contenido %}
+
+    <h1>Inserción de nueva película</h1>
+    <br>
+    {% if (pelicula) %}
+        <form action="/admin/peliculas/{{ pelicula.id }}" method="post">
+            <input type="hidden" name="_method" value="put" />
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" class="form-control" name="titulo"
+                    placeholder="Título" value="{{ pelicula.titulo }}"/>
+                </div>
+            <div class="form-group">
+                <label for="sinopsis">Sinopsis:</label>
+                <input type="text" class="form-control" name="sinopsis"
+                    placeholder="Sinopsis" value="{{ pelicula.sinopsis }}"/>
+            </div>
+            <div class="form-group">
+                <label for="duracion">Duración:</label>
+                <input type="text" class="form-control" name="duracion"
+                    placeholder="Duración" value="{{ pelicula.duracion }}"/>
+            </div>
+            <div class="form-group">
+                <label for="genero">Género:</label>
+                <input type="text" class="form-control" name="genero"
+                    placeholder="Género" value="{{ pelicula.genero }}"/>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen:</label>
+                <input type="file" class="form-control" name="imagen"
+                    value="{{ pelicula.imagen }}"/>
+            </div>
+            <div class="form-group">
+                <label for="valoracion">Valoración:</label>
+                <input type="text" class="form-control" name="valoracion"
+                    placeholder="Valoración" value="{{ pelicula.valoracion }}"/>
+            </div>
+            <div class="form-group">
+                <label for="director">Director:</label>
+                <select class="form-select" name="director">
+                    {% for director in directores %}
+                        <option value="{{ director.id }}">{{ director.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <br>
+                <label for="plataforma">Plataforma</label>
+                <br><br>
+                <div class="form-group">
+                    <label for="plataforma-nombre">Nombre:</label>
+                    <input type="text" class="form-control" name="plataforma-nombre"
+                        placeholder="Nombre"/>
+                    <label for="plataforma-fecha">Fecha:</label>
+                    <input type="text" class="form-control" name="plataforma-fecha"
+                        placeholder="Fecha"/>
+                    <label for="plataforma-cantidad">Cantidad:</label>
+                    <input type="text" class="form-control" name="plataforma-cantidad"
+                        placeholder="Cantidad"/>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                Enviar
+            </button>
+        </form>
+    {% else %}
+        <form action="/admin/peliculas" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="titulo">Título:</label>
+                <input type="text" class="form-control" name="titulo"
+                    placeholder="Título" />
+                </div>
+            <div class="form-group">
+                <label for="sinopsis">Sinopsis:</label>
+                <input type="text" class="form-control" name="sinopsis"
+                    placeholder="Sinopsis" />
+            </div>
+            <div class="form-group">
+                <label for="duracion">Duración:</label>
+                <input type="text" class="form-control" name="duracion"
+                    placeholder="Duración" />
+            </div>
+            <div class="form-group">
+                <label for="genero">Género:</label>
+                <input type="text" class="form-control" name="genero"
+                    placeholder="Género" />
+            </div>
+            <div class="form-group">
+                <label for="genero">Imagen:</label>
+                <input type="file" class="form-control" name="imagen"/>
+            </div>
+            <div class="form-group">
+                <label for="valoracion">Valoración:</label>
+                <input type="text" class="form-control" name="valoracion"
+                    placeholder="Valoración"/>
+            </div>
+            <div class="form-group">
+                <label for="director">Director:</label>
+                <select class="form-select" name="director">
+                    {% for director in directores %}
+                        <option value="{{ director.id }}">{{ director.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="plataforma">Plataforma</label>
+                <br><br>
+                <div class="form-group">
+                    <label for="plataforma-nombre">Nombre:</label>
+                    <input type="text" class="form-control" name="nombre"
+                        placeholder="Nombre"/>
+                    <label for="plataforma-fecha">Fecha:</label>
+                    <input type="text" class="form-control" name="fecha"
+                        placeholder="Fecha"/>
+                    <label for="plataforma-cantidad">Cantidad:</label>
+                    <input type="text" class="form-control" name="cantidad"
+                        placeholder="Cantidad"/>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                Enviar
+            </button>
+        </form>
+    {% endif %}
+{% endblock %}
